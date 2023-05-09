@@ -15,4 +15,28 @@ Based on the information given, break this ticket down into 2-5 individual ticke
 
 You will be graded on the level of detail in each ticket, the clarity of the execution plan within and between tickets, and the intelligibility of your language. You don't need to be a native English speaker, but please proof-read your work.
 
-## Your Breakdown Here
+## Ticket Breakdown
+
+### Ticket 1: Add custom id field to Agents table
+
+#### Description
+
+Currently, the `Agents` table in the database stores only the internal database id for each `Agent`. To enable `Facilities` to save their own custom ids for each `Agent`, we need to add a new field called `custom_id` to the `Agents` table. This field should be unique to every `Facility`, meaning that a combination of `agents.custom_id` and `facilities.id` must be unique.
+
+#### Acceptance Criteria
+
+- The `Agents` table should have a new column named `custom_id` of type `VARCHAR` (length 100, check with product team if this would be enough).
+- The migration process for adding the `custom_id` field should be evaluated for potential performance impact before execution. To achieve this, we can add a default value of `null` to the `custom_id` field. This way, we can avoid breaking existing functionality and performance issues.
+- Ensure the `custom_id` field is unique within the context of each `Facility` by adding a `UNIQUE` constraint to the combination of `custom_id` and `facility_id` columns.
+- The `Agents` table schema documentation should be updated to reflect the addition of the `custom_id` field.
+
+#### Effort Estimate
+
+This task is estimated to take approximately 4 hours.
+
+#### Implementation Details
+
+- Using `pg-migrate` migration tool, add a new column named `custom_id` of type VARCHAR (length 100) to the `Agents` table.
+- Ensure the `custom_id` field is unique by adding a `UNIQUE` constraint to the combination of `agents.custom_id` and `facilities.id` columns.
+- Ensure the `custom_id` field is null by default to avoid breaking existing functionality and performance issues. In Postgres 14 and older versions unique constraints always treat `NULL` values as not equal to other NULL values.
+- Update the `Agents` table schema documentation to reflect the addition of the `custom_id` field.
