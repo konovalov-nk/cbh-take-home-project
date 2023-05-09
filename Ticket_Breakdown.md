@@ -40,3 +40,24 @@ This task is estimated to take approximately 4 hours.
 - Ensure the `custom_id` field is unique by adding a `UNIQUE` constraint to the combination of `agents.custom_id` and `facilities.id` columns.
 - Ensure the `custom_id` field is null by default to avoid breaking existing functionality and performance issues. In Postgres 14 and older versions unique constraints always treat `NULL` values as not equal to other NULL values.
 - Update the `Agents` table schema documentation to reflect the addition of the `custom_id` field.
+
+### Ticket 2: Update `getShiftsByFacility` function to include custom id
+
+#### Description
+
+The `getShiftsByFacility` function currently returns all `Shifts` worked at a `Facility`, including metadata about the assigned `Agent`. We need to modify this function to include the `custom_id` of the `Agent` in the returned metadata.
+
+#### Acceptance Criteria
+
+- The `getShiftsByFacility` function should retrieve all `Shifts` worked at a `Facility` for the given quarter.
+- The function should include the `custom_id` of the assigned `Agent` in the returned `Shifts` metadata.
+
+#### Effort Estimate
+
+This task is estimated to take approximately 2 hours.
+
+#### Implementation Details
+
+- Identify the function or method responsible for retrieving `Shifts` by `Facility`.
+- Modify the function to fetch the `custom_id` of the assigned `Agent` along with the other metadata.
+- Update the relevant documentation or comments to reflect the change in the returned metadata.
