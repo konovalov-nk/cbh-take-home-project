@@ -83,3 +83,28 @@ This task is estimated to take approximately 2 hours.
 - Modify the function to include the `agents.custom_id` provided by the `Facility`.
 - Add test to ensure the `custom_id` is included in the generated report.
 - Update the relevant documentation or comments to reflect the change in the report generation process.
+
+### Ticket 4: Validate uniqueness of custom ids set by Facilities
+
+#### Description
+
+To maintain data integrity and prevent conflicts, we need to enforce a unique constraint for the combination of `agents.custom_id` and `facilities.id` in the `Agents` table. This will ensure that each `Facility`'s custom ids for their agents are unique within their own context.
+
+To maintain data integrity and prevent conflicts, we need to ensure that the custom ids provided by `Facilities` for each `Agent` are unique. This ticket involves adding validation to enforce uniqueness when saving or updating custom ids.
+
+#### Acceptance Criteria
+
+- The system should validate that the custom id provided by a `Facility` is unique among custom ids already stored in the database.
+- Each facility should be able to have unique custom ids for their agents without any duplicates within their own context.
+
+#### Effort Estimate
+
+This task is estimated to take approximately 4 hours.
+
+#### Implementation Details
+
+- Identify the code responsible for saving or updating the custom id in the database.
+- Before saving or updating the custom id, search the database for existing custom ids limited to the context of the `Facility` (e.g. `select exists(select 1 from agents where agents.custom_id = $1 and facilities.id = $2)`)
+- If the custom id is found to be non-unique, reject the operation and provide an appropriate error message to the `Facility`.
+- Add tests to ensure the uniqueness validation works as expected.
+- Update the relevant documentation or comments to reflect the uniqueness validation for custom ids.
