@@ -108,3 +108,27 @@ This task is estimated to take approximately 4 hours.
 - If the custom id is found to be non-unique, reject the operation and provide an appropriate error message to the `Facility`.
 - Add tests to ensure the uniqueness validation works as expected.
 - Update the relevant documentation or comments to reflect the uniqueness validation for custom ids.
+
+### Ticket 5: Allow Facilities to set/update custom ids for agents
+
+#### Description
+
+Currently, the system needs to be modified to allow `Facilities` to set and update custom ids for `Agents` they work with. This will provide flexibility for `Facilities` to manage their own unique identifiers for agents within their organization.
+
+#### Acceptance Criteria
+
+- `Facilities` should have the ability to set and update custom ids for agents they work with.
+- The system should provide a user-friendly interface or mechanism for `Facilities` to input and manage the custom ids.
+- The system should validate the custom ids to ensure they are unique within the context of the `Facility`, and present error messages or warnings if any discrepancies or mismatches are found.
+
+#### Effort Estimate
+
+This task is estimated to take approximately 8 hours.
+
+#### Implementation Details
+
+- Identify the user interface component or form where `Facilities` can input `Agent` information.
+- Enhance the user interface to include a field for entering custom ids.
+- Modify the backend code responsible for processing agent data to capture and store the custom ids in the `Agents` table.
+- Implement the necessary validation for client-side to ensure the uniqueness of custom ids within each `Facility`.
+- Update relevant documentation or user guides to explain the process of setting and updating custom ids.
