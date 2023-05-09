@@ -61,3 +61,25 @@ This task is estimated to take approximately 2 hours.
 - Identify the function or method responsible for retrieving `Shifts` by `Facility`.
 - Modify the function to fetch the `custom_id` of the assigned `Agent` along with the other metadata.
 - Update the relevant documentation or comments to reflect the change in the returned metadata.
+
+### Ticket 3: Update `generateReport` function to use custom id
+
+#### Description
+
+The `generateReport` function currently converts `Shifts` into a PDF report, but it uses the internal database id for each `Agent`. We need to update this function to include the `custom_id` provided by `Facilities` when generating reports.
+
+#### Acceptance Criteria
+
+- The `generateReport` function should convert the `Shifts` into a PDF report for submission by the `Facility`.
+- The function should include the `custom_id` of the assigned `Agent` in the generated report.
+
+#### Effort Estimate
+
+This task is estimated to take approximately 2 hours.
+
+#### Implementation Details
+
+- Identify the function or method responsible for generating the PDF report.
+- Modify the function to include the `agents.custom_id` provided by the `Facility`.
+- Add test to ensure the `custom_id` is included in the generated report.
+- Update the relevant documentation or comments to reflect the change in the report generation process.
